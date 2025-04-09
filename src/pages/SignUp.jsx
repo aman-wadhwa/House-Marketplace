@@ -5,7 +5,7 @@ import visibilityIcon from '../assets/svg/visibilityIcon.svg'
 import { getAuth, createUserWithEmailAndPassword, updateProfile} from "firebase/auth"
 import {db} from '../firebase.config'
 import { setDoc, doc, serverTimestamp} from "firebase/firestore"
-
+import { toast } from "react-toastify"
 
 function SignUp() {
   const [showpass, setshowpass] = useState(false)
@@ -14,7 +14,7 @@ function SignUp() {
     email : '',
     password : ''
   })
-  const {email,password, name} = formdata
+  const {email, password, name} = formdata
   const navigate = useNavigate()
   
   const onChange = (evt) => {
@@ -40,11 +40,12 @@ function SignUp() {
 
         await setDoc(doc(db, 'users', user.uid), formdatacopy)
 
-        // navigate('/')
+        navigate('/')
+        toast.success('Signed up successfully!')
       // console.log(userCredentials)
     }
     catch (error){
-      console.log(error)
+      toast.error('Something went wrong')
     }
   }
 
