@@ -23,7 +23,7 @@ function SignIn() {
      
       if(userCredentials.user){
         navigate('/')
-        toast.success(`Welcome ${userCredentials.user.displayName}`)
+        toast.success(`Welcome ${userCredentials.user.displayName}!`)
       }
       
     }
