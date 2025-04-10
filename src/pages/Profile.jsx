@@ -29,12 +29,16 @@ function Profile() {
         
         const userRef = doc(db,'users', auth.currentUser.uid)
         await updateDoc(userRef, {
-          name
+          name,
+          email
         })
-        toast.success('Profile name Updated!')
       }
+      toast.success('Profile name Updated!', {
+        autoClose: 1500
+      })
     }
     catch(error){
+      console.log(error)
       toast.error('Error updating Profile Name')
     }
   }
@@ -67,7 +71,7 @@ function Profile() {
               <form>
                 <input type='text' id='name' className={!changeDetails ? 'profileName' : 'profileNameActive'} disabled={!changeDetails} value={name} onChange={onChange}/>
                 
-                <input type='email' id='email' className='profileEmail' disabled='true' value={email} onChange={onChange}/>
+                <input type='email' id='email' className='profileEmail'  disabled='true' value={email} onChange={onChange}/>
               </form>
             </div>
           </main>
